@@ -24,7 +24,7 @@ Take full control of your camera
 
 Bring your crazy ideas to life
 
-### Editor Cam :sunrise_over_mountains:
+### Editor :sunrise_over_mountains:
 <table>
   <tr>
     <td><img src="https://user-images.githubusercontent.com/43090559/88478495-73860c00-cf66-11ea-97e1-ef13a75d4a8b.jpeg" height = "480" width="270"></td>
