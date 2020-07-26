@@ -1,0 +1,88 @@
+package org.amfoss.paneeer.gallery.data;
+
+import android.content.Context;
+
+import androidx.annotation.Nullable;
+
+import org.amfoss.paneeer.gallery.data.base.FilterMode;
+import org.amfoss.paneeer.gallery.data.base.SortingMode;
+import org.amfoss.paneeer.gallery.data.base.SortingOrder;
+
+import java.io.Serializable;
+
+public class AlbumSettings implements Serializable {
+
+  private String path;
+  private String coverPath;
+  private int sortingMode;
+  private int sortingOrder;
+  private boolean pinned;
+
+  private FilterMode filterMode = FilterMode.ALL;
+
+  public static AlbumSettings getSettings(Context context, Album album) {
+    CustomAlbumsHelper h = CustomAlbumsHelper.getInstance(context);
+    return h.getSettings(album.getPath());
+  }
+
+  static AlbumSettings getDefaults() {
+    return new AlbumSettings(
+        null, null, SortingMode.DATE.getValue(), SortingOrder.DESCENDING.getValue(), 0);
+  }
+
+  AlbumSettings(String path, String cover, int sortingMode, int sortingOrder, int pinned) {
+    this.path = path;
+    this.coverPath = cover;
+    this.sortingMode = sortingMode;
+    this.sortingOrder = sortingOrder;
+    this.pinned = pinned == 1;
+  }
+
+  FilterMode getFilterMode() {
+    return filterMode;
+  }
+
+  void setFilterMode(FilterMode filterMode) {
+    this.filterMode = filterMode;
+  }
+
+  String getCoverPath() {
+    return coverPath;
+  }
+
+  public SortingMode getSortingMode() {
+    return SortingMode.fromValue(sortingMode);
+  }
+
+  public SortingOrder getSortingOrder() {
+    return SortingOrder.fromValue(sortingOrder);
+  }
+
+  void changeSortingMode(Context context, SortingMode sortingMode) {
+    this.sortingMode = sortingMode.getValue();
+    CustomAlbumsHelper h = CustomAlbumsHelper.getInstance(context);
+    h.setAlbumSortingMode(path, sortingMode.getValue());
+  }
+
+  void changeSortingOrder(Context context, SortingOrder sortingOrder) {
+    this.sortingOrder = sortingOrder.getValue();
+    CustomAlbumsHelper h = CustomAlbumsHelper.getInstance(context);
+    h.setAlbumSortingOrder(path, sortingOrder.getValue());
+  }
+
+  public void changeCoverPath(Context context, @Nullable String coverPath) {
+    this.coverPath = coverPath;
+    CustomAlbumsHelper h = CustomAlbumsHelper.getInstance(context);
+    h.setAlbumPhotoPreview(path, coverPath);
+  }
+
+  boolean isPinned() {
+    return pinned;
+  }
+
+  public void togglePin(Context context) {
+    this.pinned = !pinned;
+    CustomAlbumsHelper h = CustomAlbumsHelper.getInstance(context);
+    h.pinAlbum(path, pinned);
+  }
+}

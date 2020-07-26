@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/editexif_background">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        android:background="@color/md_dark_appbar"
+        android:windowActionBarOverlay="true"
+        />
+    <ScrollView
+        android:id="@+id/editexifAct_scrollView"
+        android:scrollbarSize="@dimen/scroll_bar_size"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!--HEADER-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/editexif_reset_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/alternate_margin"
+                app:cardCornerRadius="@dimen/size_1"
+                app:cardElevation="@dimen/size_5"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:id="@+id/editexif_img"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_250"
+                        android:scaleType="centerCrop"
+                        />
+                    <TextView
+                        android:id="@+id/editexif_image_path"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/account_margin"
+                        android:text="@string/path"
+                        android:textSize="@dimen/text_small_dp"
+                        />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!--FIELDS-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/editexif_fields"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/alternate_margin"
+                app:cardCornerRadius="@dimen/size_1"
+                app:cardElevation="@dimen/size_5"
+                >
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

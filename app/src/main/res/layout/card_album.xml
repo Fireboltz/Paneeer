@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/album_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/alternate_half_margin"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="@dimen/card_elevation">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.mikepenz.iconics.view.IconicsImageView
+            android:id="@+id/selected_icon"
+            android:layout_width="@dimen/size_26dp"
+            android:layout_height="@dimen/size_26dp"
+            android:elevation="@dimen/alternate_margin"
+            android:paddingStart="@dimen/size_4"
+            android:paddingEnd="@dimen/size_4"
+            android:visibility="gone"
+            app:iiv_color="@color/md_white_1000"
+            app:iiv_icon="gmd_check_circle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:targetApi="lollipop" />
+
+
+        <ImageView
+            android:id="@+id/iv_album_preview"
+            android:layout_width="0dp"
+            android:layout_height="140dp"
+            android:scaleType="centerCrop"
+            android:tint="#46464646"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/tv_album_name"
+            android:layout_width="378dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="82dp"
+            android:layout_marginBottom="30dp"
+            android:maxLines="1"
+            android:paddingStart="@dimen/size_10"
+            android:paddingTop="@dimen/size_4"
+            android:paddingEnd="@dimen/size_8"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:elevation="@dimen/size_10"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:layout_editor_absoluteX="0dp"
+            tools:text="Album Name" />
+
+        <ImageView
+            android:id="@+id/iv_pin"
+            android:layout_width="24dp"
+            android:layout_height="0dp"
+            android:padding="@dimen/alternate_half_padding"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/tv_album_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_album_name"
+            tools:src="@drawable/pin_black"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tv_album_photos_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:paddingStart="@dimen/size_8"
+            android:paddingTop="2dp"
+            android:paddingEnd="@dimen/size_8"
+            android:paddingBottom="@dimen/size_4"
+            android:textSize="@dimen/moderate_text"
+            android:textColor="@color/white"
+            android:elevation="@dimen/size_10"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_album_name"
+            tools:layout_editor_absoluteX="2dp"
+            tools:text="1 Photos" />
+
+        <ImageView
+            android:id="@+id/iv_storage_icon"
+            android:layout_width="24dp"
+            android:layout_height="0dp"
+            android:padding="@dimen/alternate_half_padding"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/tv_album_photos_count"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_album_photos_count"
+            tools:src="@drawable/ic_sd_storage_black_24dp"
+            tools:visibility="visible" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

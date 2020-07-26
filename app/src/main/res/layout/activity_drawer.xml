@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:id="@+id/DrawerMain"
+              android:layout_width="@dimen/size_300"
+              android:layout_height="match_parent"
+              android:layout_gravity="start"
+              android:clickable="true"
+              android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/drawer_scrollbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbarSize="@dimen/scroll_bar_size">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:paddingTop="@dimen/password_spacing"
+                android:layout_height="@dimen/size_160"
+                android:elevation="@dimen/alternate_half_padding"
+                android:id="@+id/Drawer_Header"
+                app:srcCompat="@mipmap/ic_launcher"
+                />
+
+            <LinearLayout
+                android:id="@+id/Drawer_Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/sub_small_spacing"
+                android:orientation="vertical"
+                android:scrollbars="vertical">
+                <!-- DEFAULT ALBUMS -->
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                              android:id="@+id/ll_drawer_Default"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:background="@drawable/ripple"
+                              android:clickable="true"
+                              android:orientation="horizontal">
+
+                    <com.mikepenz.iconics.view.IconicsImageView
+                        android:id="@+id/Drawer_Default_Icon"
+                        android:layout_width="@dimen/icon_width_height"
+                        android:layout_height="@dimen/icon_width_height"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/big_spacing"
+                        android:layout_marginEnd="@dimen/big_spacing"
+                        app:iiv_icon="gmd-folder"/>
+
+                    <TextView
+                        android:id="@+id/Drawer_Default_Item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/medium_spacing"
+                        android:paddingTop="@dimen/medium_spacing"
+                        android:text="@string/local_folder"
+                        android:textColor="@color/md_dark_background"
+                        android:textSize="@dimen/medium_text"/>
+                </LinearLayout>
+
+                <!-- HIDDEN ALBUMS -->
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                              android:id="@+id/ll_drawer_hidden"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:background="@drawable/ripple"
+                              android:clickable="true"
+                              android:orientation="horizontal">
+
+                    <com.mikepenz.iconics.view.IconicsImageView
+                        android:id="@+id/Drawer_hidden_Icon"
+                        android:layout_width="@dimen/icon_width_height"
+                        android:layout_height="@dimen/icon_width_height"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/big_spacing"
+                        android:layout_marginEnd="@dimen/big_spacing"
+                        app:iiv_icon="faw-low-vision"/>
+
+                    <TextView
+                        android:id="@+id/Drawer_hidden_Item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/medium_spacing"
+                        android:paddingTop="@dimen/medium_spacing"
+                        android:text="@string/hidden_folder"
+                        android:textColor="@color/md_dark_background"
+                        android:textSize="@dimen/medium_text"/>
+                </LinearLayout>
+
+                <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/ll_drawer_camera"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ripple"
+                    android:clickable="true"
+                    android:orientation="horizontal">
+
+                    <com.mikepenz.iconics.view.IconicsImageView
+                        android:id="@+id/Drawer_camera_Icon"
+                        android:layout_width="@dimen/icon_width_height"
+                        android:layout_height="@dimen/icon_width_height"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/big_spacing"
+                        android:layout_marginEnd="@dimen/big_spacing"
+                        app:iiv_icon="@string/gmd_camera"/>
+
+                    <TextView
+                        android:id="@+id/Drawer_camera_Item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/medium_spacing"
+                        android:paddingTop="@dimen/medium_spacing"
+                        android:text="@string/title_camera"
+                        android:textColor="@color/md_dark_background"
+                        android:textSize="@dimen/medium_text"/>
+                </LinearLayout>
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/ll_drawer_arcamera"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ripple"
+                    android:clickable="true"
+                    android:orientation="horizontal">
+
+                    <com.mikepenz.iconics.view.IconicsImageView
+                        android:id="@+id/Drawer_arcamera_Icon"
+                        android:layout_width="@dimen/icon_width_height"
+                        android:layout_height="@dimen/icon_width_height"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/big_spacing"
+                        android:layout_marginEnd="@dimen/big_spacing"
+                        app:iiv_icon="@string/gmd_camera_enhance"/>
+
+                    <TextView
+                        android:id="@+id/Drawer_arcamera_Item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/medium_spacing"
+                        android:paddingTop="@dimen/medium_spacing"
+                        android:text="AR Camera"
+                        android:textColor="@color/md_dark_background"
+                        android:textSize="@dimen/medium_text"/>
+                </LinearLayout>
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/ll_drawer_edcamera"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ripple"
+                    android:clickable="true"
+                    android:orientation="horizontal">
+
+                    <com.mikepenz.iconics.view.IconicsImageView
+                        android:id="@+id/Drawer_edcamera_Icon"
+                        android:layout_width="@dimen/icon_width_height"
+                        android:layout_height="@dimen/icon_width_height"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/big_spacing"
+                        android:layout_marginEnd="@dimen/big_spacing"
+                        app:iiv_icon="@string/gmd_camera_front"/>
+
+                    <TextView
+                        android:id="@+id/Drawer_edcamera_Item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/medium_spacing"
+                        android:paddingTop="@dimen/medium_spacing"
+                        android:text="Editor Camera"
+                        android:textColor="@color/md_dark_background"
+                        android:textSize="@dimen/medium_text"/>
+                </LinearLayout>-->
+
+                <!--Favourites Folder-->
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                              android:id="@+id/ll_drawer_favourites"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:background="@drawable/ripple"
+                              android:clickable="true"
+                              android:orientation="horizontal">
+
+                    <com.mikepenz.iconics.view.IconicsImageView
+                        android:id="@+id/Drawer_favourite_Icon"
+                        android:layout_width="@dimen/icon_width_height"
+                        android:layout_height="@dimen/icon_width_height"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/big_spacing"
+                        android:layout_marginEnd="@dimen/big_spacing"
+                        app:iiv_icon="gmd_grade"/>
+
+                    <TextView
+                        android:id="@+id/Drawer_favourite_Item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/medium_spacing"
+                        android:paddingTop="@dimen/medium_spacing"
+                        android:text="@string/favourite_folder"
+                        android:textColor="@color/md_dark_background"
+                        android:textSize="@dimen/medium_text"/>
+                </LinearLayout>
+
+                <!-- Trash Bin -->
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                              android:id="@+id/ll_drawer_trashbin"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:background="@drawable/ripple"
+                              android:clickable="true"
+                              android:orientation="horizontal">
+
+                    <com.mikepenz.iconics.view.IconicsImageView
+                        android:id="@+id/Drawer_trashbin_Icon"
+                        android:layout_width="@dimen/icon_width_height"
+                        android:layout_height="@dimen/icon_width_height"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/big_spacing"
+                        android:layout_marginEnd="@dimen/big_spacing"
+                        app:iiv_icon="faw_trash_o"/>
+
+                    <TextView
+                        android:id="@+id/Drawer_TrashBin_Item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/medium_spacing"
+                        android:paddingTop="@dimen/medium_spacing"
+                        android:text="@string/trash_bin"
+                        android:textColor="@color/md_dark_background"
+                        android:textSize="@dimen/medium_text"/>
+                </LinearLayout>
+
+
+                <!-- TAGS ALBUMS -->
+                <!--
+                    <LinearLayout
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/ll_drawer_Tags"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:background="@drawable/ripple"
+                        android:clickable="true"
+                        >
+                        <com.mikepenz.iconics.view.IconicsImageView
+                            android:id="@+id/Drawer_Tags_Icon"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="20dp"
+                            app:iiv_icon="faw-tag"
+                            />
+                        <TextView
+                            android:id="@+id/Drawer_Tags_Item"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:padding="15dp"
+                            android:text="@string/tags"
+                            android:textColor="@color/md_dark_background"
+                            android:textSize="16sp"
+                            />
+                    </LinearLayout>
+                -->
+                <!-- TIMELINE -->
+                <!--
+                    <LinearLayout
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/ll_drawer_Moments"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:background="@drawable/ripple"
+                        android:clickable="true"
+                        >
+                        <com.mikepenz.iconics.view.IconicsImageView
+                            android:id="@+id/Drawer_Moments_Icon"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="20dp"
+                            app:iiv_icon="gmd-timeline"
+                            />
+                        <TextView
+                            android:id="@+id/Drawer_Moments_Item"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:padding="15dp"
+                            android:text="@string/timeline"
+                            android:textColor="@color/md_dark_background"
+                            android:textSize="16sp"
+                            />
+                    </LinearLayout>
+                -->
+
+                <!--TODO: FIX THE LITTLE GRADIENT SHADOW-->
+
+                <View
+                    android:id="@+id/Drawer_Body_Divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/zero"
+                    android:layout_marginBottom="@dimen/zero"
+                    android:layout_marginTop="@dimen/zero"
+                    android:padding="@dimen/zero"/>
+
+                <!-- SETTING -->
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                              android:id="@+id/ll_drawer_Setting"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:background="@drawable/ripple"
+                              android:clickable="true"
+                              android:orientation="horizontal">
+
+                    <com.mikepenz.iconics.view.IconicsImageView
+                        android:id="@+id/Drawer_Setting_Icon"
+                        android:layout_width="@dimen/icon_width_height"
+                        android:layout_height="@dimen/icon_width_height"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/big_spacing"
+                        android:layout_marginEnd="@dimen/big_spacing"
+                        app:iiv_icon="gmd-settings"/>
+
+                    <TextView
+                        android:id="@+id/Drawer_Setting_Item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/medium_spacing"
+                        android:paddingTop="@dimen/medium_spacing"
+                        android:text="@string/settings"
+                        android:textColor="@color/md_dark_background"
+                        android:textSize="@dimen/medium_text"/>
+                </LinearLayout>
+
+                <!-- ABOUT -->
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                              android:id="@+id/ll_drawer_About"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:background="@drawable/ripple"
+                              android:clickable="true"
+                              android:orientation="horizontal">
+
+                    <com.mikepenz.iconics.view.IconicsImageView
+                        android:id="@+id/Drawer_About_Icon"
+                        android:layout_width="@dimen/icon_width_height"
+                        android:layout_height="@dimen/icon_width_height"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/big_spacing"
+                        android:layout_marginEnd="@dimen/big_spacing"
+                        app:iiv_icon="gmd-info-outline"/>
+
+                    <TextView
+                        android:id="@+id/Drawer_About_Item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/medium_spacing"
+                        android:paddingTop="@dimen/medium_spacing"
+                        android:text="@string/about"
+                        android:textColor="@color/md_dark_background"
+                        android:textSize="@dimen/medium_text"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000000"
+        tools:context="org.amfoss.paneeer.editorCamera.ui.EditorCameraActivity">
+
+        <FrameLayout
+            android:id="@+id/camera_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@android:color/black" />
+
+        <View
+            android:id="@+id/top_ratio_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_alignParentTop="true"
+            android:background="@android:color/white"
+            android:visibility="invisible" />
+
+        <View
+            android:id="@+id/bottom_ratio_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@android:color/white"
+            android:visibility="invisible" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/camera_switch_button"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:background="@drawable/btn_camera_switch"
+                android:onClick="onClickButtons" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/shutter_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="113.5dp"
+            android:orientation="horizontal"
+            android:paddingStart="43dp">
+
+            <org.amfoss.paneeer.editorCamera.ui.widget.UnderLineView
+                android:id="@+id/shutter_photo_button"
+                android:layout_width="43dp"
+                android:layout_height="21.5dp"
+                android:layout_marginStart="11dp"
+                android:onClick="onClickButtons"
+                android:tag="0"
+                app:select="true"
+                app:text="Photo" />
+
+            <org.amfoss.paneeer.editorCamera.ui.widget.UnderLineView
+                android:id="@+id/shutter_video_button"
+                android:layout_width="43dp"
+                android:layout_height="21.5dp"
+                android:layout_marginStart="11dp"
+                android:onClick="onClickButtons"
+                android:tag="1"
+                app:select="false"
+                app:text="Video" />
+
+        </LinearLayout>
+
+        <!--functions layout-->
+        <LinearLayout
+            android:id="@+id/functions_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="29dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="23.5dp"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/filter_button"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_filter"
+                    android:onClick="onClickButtons" />
+
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:text="Filters" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="23.5dp"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/sticker_button"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_content"
+                    android:onClick="onClickButtons" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:text="Stickers" />
+            </LinearLayout>
+
+            <ToggleButton
+                android:id="@+id/shutter_button"
+                android:layout_width="62dp"
+                android:layout_height="62dp"
+                android:layout_marginStart="23.5dp"
+                android:background="@drawable/btn_shutter_photo_blue"
+                android:checked="false"
+                android:onClick="onClickButtons"
+                android:text=""
+                android:textOff=""
+                android:textOn="" />
+
+            <LinearLayout
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="23.5dp"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/beauty_button"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_beauty"
+                    android:onClick="onClickButtons" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:text="Beauty" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="23.5dp"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/bulge_button"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_smile"
+                    android:onClick="onClickButtons" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:text="Bulge" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="invisible" />
+
+        <FrameLayout
+            android:id="@+id/slot_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/bulgefun_close_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/close_bulge_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="close" />
+
+        <Button
+            android:id="@+id/clear_bulge_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="clear bulge" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bulgefun_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bulgefun_close_layout"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/bulge_fun1_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fun1" />
+
+            <Button
+                android:id="@+id/bulge_fun2_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fun2" />
+            <Button
+                android:id="@+id/bulge_fun3_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fun3" />
+            <Button
+                android:id="@+id/bulge_fun4_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fun4" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/bulge_fun5_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fun5" />
+            <Button
+                android:id="@+id/bulge_fun6_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fun6" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,11 @@
+**/*.DS_Store
+*.iml
+*.apk
+.gradle
+.idea
+.externalNativeBuild
+local.properties
+build
+viewflow/
+keystore.properties
+app/.cxx/

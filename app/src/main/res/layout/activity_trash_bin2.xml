@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/view_parent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+  <include
+      android:id="@+id/toolbar"
+      layout="@layout/toolbar" />
+
+  <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+      android:id="@+id/swipeRefreshLayout_trashbin"
+      android:layout_width="match_parent"
+      android:layout_below="@id/toolbar"
+      android:layout_height="match_parent">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/trashbin_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible" />
+
+  </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+  <RelativeLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:visibility="gone"
+                  android:id="@+id/empty_trash">
+
+    <ImageView android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:id="@+id/image_trash"
+               app:srcCompat="@drawable/ic_delete_sweep_black_24dp"
+               android:layout_centerInParent="true"/>
+
+    <TextView android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:id="@+id/trash_text"
+              android:layout_below="@id/image_trash"
+              android:layout_marginStart="@dimen/sub_big_spacing"
+              android:layout_marginEnd="@dimen/sub_big_spacing"
+              android:gravity="center"
+              android:textSize="@dimen/text_medium_dp"
+              android:textStyle="bold"
+              android:text="@string/empty_trashbin_mssg"/>
+
+  </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/view_switcher_single_media"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/PhotoPager_Layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:theme="@style/ThemeOverlay.AppCompat">
+        <!--android:fitsSystemWindows="true"-->
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+
+        <RelativeLayout
+            android:id="@+id/parentRelative"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true">
+
+            <org.amfoss.paneeer.gallery.views.PagerRecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/photos_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/toolbar_bottom"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true" />
+
+            <androidx.appcompat.widget.ActionMenuView
+                android:id="@+id/toolbar_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_alignParentBottom="true"
+                android:background="#000000"
+                android:elevation="@dimen/very_small_spacing" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <include
+        android:id="@+id/layout_image_description"
+        layout="@layout/image_description" />
+</ViewSwitcher>

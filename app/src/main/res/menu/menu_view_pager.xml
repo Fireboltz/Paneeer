@@ -1,0 +1,33 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="org.amfoss.paneeer.gallery.activities.SingleMediaActivity">
+
+    <group android:id="@+id/only_photos_options">
+        <item
+            android:id="@+id/action_use_as"
+            android:title="@string/use_as"
+            app:showAsAction="never" />
+    </group>
+
+    <group android:id="@+id/on_internal_storage">
+        <item
+            android:id="@+id/action_cover"
+            app:showAsAction="never"
+            android:title="Make Album Cover"/>
+    </group>
+
+    <item
+        android:id="@+id/slide_show"
+        android:title="@string/slideshow"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/print"
+        app:showAsAction="never"
+        android:title="@string/print"/>
+    <item
+        android:id="@+id/pdf"
+        app:showAsAction="never"
+        android:title="Convert to PDF"/>
+    <!-- End Albums Stuff -->
+</menu>

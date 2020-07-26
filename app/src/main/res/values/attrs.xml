@@ -1,0 +1,8 @@
+<resources>
+    <declare-styleable name="UnderLineView">
+        <attr name="text" format="reference|string" />
+        <attr name="textColor" format="reference|integer" />
+        <attr name="lineColor" format="reference|integer" />
+        <attr name="select" format="reference|boolean" />
+    </declare-styleable>
+</resources>

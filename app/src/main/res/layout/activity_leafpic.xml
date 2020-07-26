@@ -1,0 +1,128 @@
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:openDrawer="start">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/cl_main_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:theme="@style/Theme.AppCompat.NoActionBar">
+        <!---->
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <org.amfoss.paneeer.gallery.util.CustomNestedView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/nestedView"
+            android:fillViewport="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                    android:id="@+id/swipeRefreshLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:clipToPadding="false"
+                        android:scrollbarThumbVertical="@drawable/ic_scrollbar"
+                        android:scrollbars="vertical">
+
+                        <org.amfoss.paneeer.gallery.views.CustomScrollBarRecyclerView
+                            android:id="@+id/grid_photos"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_horizontal"
+                            android:clipToPadding="false"
+                            android:paddingBottom="@dimen/height_bottombar"
+                            android:scrollbarThumbVertical="@drawable/ic_scrollbar"
+                            android:scrollbars="vertical" />
+
+                        <org.amfoss.paneeer.gallery.views.CustomScrollBarRecyclerView
+                            android:id="@+id/grid_albums"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:clipToPadding="false"
+                            android:paddingBottom="@dimen/height_bottombar"
+                            android:scrollbarThumbVertical="@drawable/ic_scrollbar"
+                            android:scrollbars="vertical" />
+
+                        <TextView android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:id="@+id/no_search_results"
+                                  android:gravity="center_horizontal"
+                                  android:textSize="@dimen/sub_big_text"
+                                  android:layout_marginTop="@dimen/very_big_margin"
+                                  android:visibility="invisible"/>
+
+                        <TextView
+                            android:id="@+id/nothing_to_show"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginTop="@dimen/sub_small_spacing"
+                            android:elevation="@dimen/medium_small_spacing"
+                            android:gravity="center"
+                            android:text="@string/there_is_nothing_to_show"
+                            android:textColor="@color/md_white_1000"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/sub_big_text"
+                            android:visibility="invisible"
+                            tools:targetApi="lollipop" />
+
+                        <ImageView
+                            android:id="@+id/star_image_view"
+                            android:layout_width="@dimen/size_90"
+                            android:layout_height="@dimen/size_90"
+                            android:layout_above="@id/nothing_to_show"
+                            android:layout_centerInParent="true"
+                            android:visibility="gone"
+                            app:srcCompat="@drawable/ic_star_black_24dp" />
+
+                    </RelativeLayout>
+                </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            </FrameLayout>
+        </org.amfoss.paneeer.gallery.util.CustomNestedView>
+
+        <include
+            android:id="@+id/bottombar"
+            layout="@layout/element_bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:elevation="@dimen/very_small_spacing" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_scroll_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/inside_spacing_top"
+            app:layout_anchor="@id/nestedView"
+            app:layout_anchorGravity="bottom|center"
+            app:srcCompat="@drawable/ic_keyboard_arrow_up_black_24dp" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <include
+        android:id="@+id/drawer_items"
+        layout="@layout/activity_drawer" />
+</androidx.drawerlayout.widget.DrawerLayout>
+
+

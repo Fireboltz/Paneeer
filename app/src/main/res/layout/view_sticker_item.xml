@@ -1,0 +1,10 @@
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/img"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:maxHeight="@dimen/size_50dp"
+    android:maxWidth="@dimen/size_50dp"
+    android:paddingStart="@dimen/alternate_half_padding"
+    android:paddingEnd="@dimen/alternate_half_padding"
+    android:scaleType="centerInside" />

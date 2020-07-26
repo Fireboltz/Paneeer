@@ -1,0 +1,241 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.dicedmelon.gradle:jacoco-android:0.1.4'
+    }
+}
+
+plugins {
+    id "com.diffplug.gradle.spotless" version "3.16.0"
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'jacoco-android'
+apply plugin: "com.github.b3er.local.properties"
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'realm-android'
+
+def keystorePropertiesFile = rootProject.file("sample_keystore.properties")
+
+def keystoreProperties = new Properties()
+
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+
+    defaultConfig {
+        applicationId "org.amfoss.paneeer"
+        minSdkVersion 23
+        targetSdkVersion 29
+        versionCode 1
+        versionName '1.0.0'
+        multiDexEnabled true
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        vectorDrawables.useSupportLibrary = true
+        resConfigs "en"
+        ndk {
+            abiFilters 'armeabi-v7a','arm64-v8a','x86','x86_64'
+        }
+        renderscriptTargetApi 19
+        renderscriptSupportModeEnabled true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        }
+        debug {
+            testCoverageEnabled false
+
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    packagingOptions {
+        exclude 'META-INF/maven/org.apache.maven/maven-artifact/pom.xml'
+        exclude 'licenses/javolution.license.TXT'
+        exclude 'META-INF/maven/org.apache.maven.wagon/wagon-http-shared/pom.properties'
+        exclude 'META-INF/maven/*'
+        exclude 'org/codehaus/classworlds/uberjar/boot/Bootstrapper.class'
+    }
+
+    configurations {
+        implementation.exclude group: 'org.jetbrains', module: 'annotations'
+    }
+
+    lintOptions {
+        abortOnError false
+        disable "Instantiatable"
+    }
+
+    tasks.withType(JavaCompile) {
+        configure(options) {
+            // TODO
+            compilerArgs << "-Xlint:unchecked"
+            compilerArgs << "-Xlint:-rawtypes"
+        }
+    }
+
+    dexOptions {
+        jumboMode = true
+    }
+    externalNativeBuild {
+        ndkBuild {
+            path 'src/main/jni/Android.mk'
+        }
+    }
+
+    splits {
+        abi {
+            enable true
+            reset()
+            include "x86", "armeabi-v7a", "arm64-v8a", "x86_64"
+            universalApk true
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url "https://jitpack.io" }
+
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+spotless {
+    java {
+        googleJavaFormat()
+        target '**/*.java'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.1.0', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    // Core library
+    androidTestImplementation 'androidx.test:core:1.2.0'
+
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.72"
+
+    // AndroidJUnitRunner and JUnit Rules
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test:rules:1.2.0'
+
+    // ARGear
+    implementation (name: 'argear', ext: 'aar')
+
+    //retrofit
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.4.1'
+
+    //google and support
+    implementation "androidx.appcompat:appcompat:$rootProject.supportLibraryVersion"
+    implementation "androidx.vectordrawable:vectordrawable-animated:1.1.0"
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
+    implementation "com.google.android.material:material:1.1.0"
+    implementation "androidx.vectordrawable:vectordrawable:1.1.0"
+    implementation "androidx.palette:palette:1.0.0"
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation "androidx.browser:browser:1.2.0"
+    implementation "androidx.recyclerview:recyclerview:1.0.0"
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+    //exoplayer
+    implementation 'com.google.android.exoplayer:exoplayer:r1.5.7'
+
+    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleVersion"
+
+    //utils
+    implementation 'com.getkeepsafe.taptargetview:taptargetview:1.13.0'
+    implementation "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
+    implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
+    implementation "com.github.bumptech.glide:gifencoder-integration:$rootProject.glideVersion"
+    implementation 'com.yalantis:ucrop:1.5.0'
+    /*implementation('com.crashlytics.sdk.android:crashlytics:2.9.3@aar') {
+        transitive = true;
+    }*/
+
+    implementation 'com.koushikdutta.ion:ion:3.0.8'
+    implementation 'org.jetbrains:annotations-java5:18.0.0'
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation group: 'com.box', name: 'box-android-sdk', version: '5.0.0'
+
+    //icons
+    implementation 'com.mikepenz:iconics-core:2.8.4@aar'
+    implementation 'com.mikepenz:google-material-typeface:2.2.0.3.original@aar'
+    implementation 'com.mikepenz:community-material-typeface:1.5.54.2@aar'
+    implementation 'com.mikepenz:fontawesome-typeface:4.6.0.1@aar'
+    implementation 'com.mikepenz:ionicons-typeface:+@aar'
+
+    //ui
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'me.jfenn.ColorPickerDialog:base:0.2.1'
+    implementation 'com.turingtechnologies.materialscrollbar:lib:10.1.4'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
+    implementation 'com.github.shchurov:horizontalwheelview:0.9.5'
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
+
+    //photoview
+    implementation 'com.github.chrisbanes:PhotoView:1.2.6'
+
+    //leak canary
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
+
+    //metadataextractor
+    implementation 'com.drewnoakes:metadata-extractor:2.9.1'
+
+    //tests
+    testImplementation "junit:junit:$rootProject.junitVersion"
+    androidTestImplementation 'com.google.code.findbugs:jsr305:3.0.0'
+
+    //opencv
+    implementation project(':openCV')
+
+    //pdk
+    implementation 'com.github.forkerknights:android-pdk:1.2b'
+
+    //compressor
+    implementation 'id.zelory:compressor:2.1.0'
+
+    //about page
+    implementation 'com.github.medyo:android-about-page:1.2.5'
+
+    implementation 'javax.vecmath:vecmath:1.5.2'
+    implementation 'com.google.ar:core:1.16.0'
+    implementation 'com.github.duanhong169:colorpicker:1.1.6'
+
+    implementation "com.google.code.gson:gson:2.8.5"
+
+    // ARGear
+    implementation (name: 'argear', ext: 'aar')
+
+    // Build off of TensorFlow Lite
+    implementation 'org.tensorflow:tensorflow-lite:1.14.0'
+    implementation 'org.tensorflow:tensorflow-lite-gpu:1.14.0'
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'jacoco-android'

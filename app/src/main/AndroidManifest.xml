@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="org.amfoss.paneeer">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.READ_SMS"
+        tools:node="remove"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS"
+        tools:node="remove"/>
+    <uses-permission android:name="android.permission.SEND_SMS"
+        tools:node="remove"/>
+    <uses-permission android:name="android.permission.WRITE_SMS"
+        tools:node="remove"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"
+        tools:node="remove"/>
+    <uses-permission android:name="android.permission.WRITE_CALL_LOG"
+        tools:node="remove"/>
+    <uses-permission android:name="android.permission.READ_CALL_LOG"
+        tools:node="remove"/>
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"
+        tools:node="remove"/>
+    <uses-permission android:name="android.permission.MANAGE_OWN_CALLS"
+        tools:node="remove"/>
+    <uses-permission android:name="android.permission.ANSWER_PHONE_CALLS"
+        tools:node="remove"/>
+    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS"
+        tools:node="remove"/>
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.microphone" />
+
+    <uses-feature
+        android:glEsVersion="0x00030001"
+        android:required="true" />
+
+
+    <application
+        android:name="org.amfoss.paneeer.Paneeer"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:requestLegacyExternalStorage="true"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.google.ar.core"
+            android:value="required" />
+
+        <activity
+            android:name="org.amfoss.paneeer.opencamera.Camera.CameraActivity"
+            android:parentActivityName="org.amfoss.paneeer.gallery.activities.GalleryMainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <intent-filter>
+                <action android:name="android.media.action.IMAGE_CAPTURE_SECURE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.media.action.STILL_IMAGE_CAMERA_SECURE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.media.action.IMAGE_CAPTURE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.VOICE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.media.action.STILL_IMAGE_CAMERA" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.VOICE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="org.amfoss.paneeer.opencamera.Camera.TakePhoto"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:excludeFromRecents="true"
+            android:icon="@drawable/ic_launcher_take_photo"
+            android:label="@string/take_photo"
+            android:screenOrientation="portrait"
+            android:taskAffinity="" />
+        <!-- should not change the android:name, including moving to a subpackage - see http://android-developers.blogspot.co.uk/2011/06/things-that-cannot-change.html -->
+        <receiver
+            android:name="org.amfoss.paneeer.opencamera.Camera.MyWidgetProvider"
+            android:icon="@drawable/ic_paneeer"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info" />
+        </receiver>
+        <!-- should not change the android:name, including moving to a subpackage - see http://android-developers.blogspot.co.uk/2011/06/things-that-cannot-change.html -->
+        <receiver
+            android:name="org.amfoss.paneeer.opencamera.Camera.MyWidgetProviderTakePhoto"
+            android:icon="@drawable/ic_launcher_take_photo"
+            android:label="@string/take_photo">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_take_photo" />
+        </receiver>
+        <!-- should not change the android:name, including moving to a subpackage - see http://android-developers.blogspot.co.uk/2011/06/things-that-cannot-change.html -->
+        <service
+            android:name="org.amfoss.paneeer.opencamera.Camera.MyTileService"
+            android:icon="@drawable/ic_photo_camera_white_48dp"
+            android:label="@string/camera"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+        <!-- should not change the android:name, including moving to a subpackage - see http://android-developers.blogspot.co.uk/2011/06/things-that-cannot-change.html -->
+        <service
+            android:name="org.amfoss.paneeer.opencamera.Camera.MyTileServiceVideo"
+            android:icon="@drawable/ic_videocam_white_48dp"
+            android:label="@string/record_video"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+        <!-- should not change the android:name, including moving to a subpackage - see http://android-developers.blogspot.co.uk/2011/06/things-that-cannot-change.html -->
+        <service
+            android:name="org.amfoss.paneeer.opencamera.Camera.MyTileServiceFrontCamera"
+            android:icon="@drawable/ic_face_white_48dp"
+            android:label="@string/selfie"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name="org.amfoss.paneeer.gallery.activities.SplashScreen"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <category android:name="android.intent.category.APP_GALLERY" />
+            </intent-filter>
+            <intent-filter android:label="@string/app_name">
+                <action android:name="android.intent.action.GET_CONTENT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.OPENABLE" />
+
+                <data android:mimeType="image/*" />
+                <data android:mimeType="video/*" />
+            </intent-filter>
+            <intent-filter android:label="@string/app_name">
+                <action android:name="android.intent.action.PICK" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="image/*" />
+                <data android:mimeType="video/*" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="paneeer.OPEN_ALBUM" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
+        </activity>
+        <activity
+            android:name="org.amfoss.paneeer.gallery.activities.GalleryMainActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.albumsAct" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="org.amfoss.paneeer.gallery.activities.SingleMediaActivity"
+            android:configChanges="orientation|screenSize|uiMode|touchscreen|screenLayout"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustPan"
+            android:parentActivityName="org.amfoss.paneeer.gallery.activities.GalleryMainActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="com.google.android.voicesearch.SELF_NOTE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.amfoss.paneeer.gallery.activities.GalleryMainActivity" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.albumPhoto" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter tools:ignore="AppLinkUrlError">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="image/*" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.android.camera.action.REVIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="image/*" />
+                <data android:mimeType="video/*" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="image/*" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="org.amfoss.paneeer.gallery.activities.SettingsActivity"
+            android:configChanges="orientation|screenSize"
+            android:windowSoftInputMode="adjustNothing"
+            android:label="@string/settings"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.SETTING" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="org.amfoss.paneeer.gallery.activities.AboutActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/about">
+        </activity>
+
+        <activity
+            android:name="org.amfoss.paneeer.gallery.activities.ExcludedAlbumsActivity"
+            android:label="@string/excluded_albums"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.ExcludedAlbums" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="org.amfoss.paneeer.editor.EditImageActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+
+            android:windowSoftInputMode="adjustPan"
+            />
+
+        <activity
+            android:name="org.amfoss.paneeer.ARMainActivity"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name="org.amfoss.paneeer.opencamera.Camera.PhotoActivity"
+            android:label="Preview"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <meta-data
+            android:name="org.amfoss.paneeer.gallery.CustomGlideModule"
+            android:value="GlideModule" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+        <activity android:name="org.amfoss.paneeer.editor.CompressImageActivity"></activity>
+        <activity android:name="org.amfoss.paneeer.trashbin.TrashBinActivity"></activity>
+
+        <activity
+            android:name="org.amfoss.paneeer.editorCamera.ui.EditorCameraActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="locale|layoutDirection">
+        </activity>
+
+        <activity android:name="org.amfoss.paneeer.editorCamera.ui.PlayerActivity" />
+        <activity android:name="org.amfoss.paneeer.editorCamera.ui.ImageViewerActivity" />
+    </application>
+
+</manifest>
